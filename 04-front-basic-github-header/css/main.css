@@ -1,0 +1,198 @@
+/* common */
+.body__container{
+    font-family: 'Roboto', sans-serif;
+    font-size: 100px;
+    font-weight: 400;
+    color: #333;
+    font-size: 16px;
+}
+
+/* btn */
+.btn{
+    height : 34px;
+    background : #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border : 1px solid;
+    border-radius : 4px;
+    display : inline-flex; /* flex는 블록처럼 가로전체차지, inline-flex는 글자크기만큼 가로크기 조절 */
+    align-items : center; /* 수직 가운데 정렬 */
+    padding : 0 12px; /* 가로크기조절을 위한 방버으로 padding과 display:inline-flex를 사용 / padding은 위 아래 여백은 없고, 좌우 여백만 12px로 설정 */
+    font-size : 14px;
+    font-weight : 500;
+    line-height : 1.5; /* 줄높이. font-size에 곱하기 1.5, 줄높이는 즉 14px의 1.5배 */
+    color : #333; /* #333333과 동일 */
+    
+    /* linear-gradient(Direction, color1, color2,...); */
+    cursor : pointer;
+    position : relative;
+    box-sizing : border-box; /* 부모영역-자식영역 absolute가 relative 부모를 기준으로 이동하기에 설정 */
+  }
+  
+  .btn:hover::before{
+    content : "";
+  /* content는 필수요소 */
+    position : absolute; /* 자식영역-부모영역 relative를 기준으로 이동하기에 부모.btn에 relative 설정 */
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    background : rgba(0,0,0,0.07); /* 투명도 0.07 */
+  }
+  
+  .btn.btn--primary{
+    border: 1px solid #65b836;
+    color : #fff;
+    background : #55a532 linear-gradient(#91dd70, #55ae2e);
+    
+  }
+  
+  /* input */
+  .input--text{
+    height : 34px;
+    padding : 0 5px; /* padding은 border와 content 사이 여백으로 위아래 0, 좌우 10px */
+    font-size : 16px;
+    border : 1px solid #ddd; /* 조금 밝은 컬러의 테두리 설정 */
+    border-radius : 5px;
+    outline : none; /* 포커스할때 변하는 테두리 색상인데 제어하기 어려워서 none으로 설정 */
+    box-sizing : border-box;
+    box-shadow : 1px 2px rgba(0,0,0,.075);
+    /* inset은 입력창 테두리 안쪽에 그림자를 넣을때, .075는 투명도를 의미 */
+  }
+  
+  .input--text:focus{
+    border-color : #51a7e8; /* 테두리 */
+    box-shadow : inset 0 1px 2px rgba(0,0,0,.075), 0 0 5px rgba(81, 167, 232, .5);
+  }
+
+  /* Vendor prefix(브라우저 업체별 접두어 */
+  .input--text::-webkit-input-placeholder{color: #cacaca;} /* 크롬 */
+  .input--text::-ms-input-placeholder{color: #cacaca;} /* edge(microsoft) */
+  .input--text::-moz-placeholder{color: #cacaca;} /* firefox(mozila) */
+
+  a{
+    text-decoration: none; /* a태그에 기본적으로 들어가는 밑줄을 없애준다. */
+  }
+
+/* inner left / right */
+.float--left{
+  float: left;
+}
+
+.float--right{
+  float: right;
+}
+
+.clearfix::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+
+/* section */
+
+.section{
+  position: relative;
+}
+
+.section .inner{
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* header */
+
+header{
+  border-bottom: 1px solid rgba(0,0,0, .75);
+  box-shadow: 0 0 5px rgba(0,0,0, .75);
+  background: #fff;
+}
+
+header .inner{
+  max-width: 980px;
+  height: 78px;
+  margin: 0 auto;
+}
+
+header .menu-group{
+  display: flex;
+  align-items: center;
+  height: 100%; /* 부모태그의 height를 기준으로 %로 크기지정 (여기서는 inner) */
+}
+
+header .logo{
+  margin-right: 10px;
+}
+
+header .logo a{ /* a 태그는 inline 속성 */
+  background: url(../img/logo.svg); /* .은 안쓰는 거랑 같고, ..은 현재 작업중인 폴더(여기는 css)의 바깥 폴더 경로를 지정한다. */
+  width: 32px;
+  height: 32px;
+  display: block; /* a 태그는 inline 속성이기 때문에 크기가 먹히지 않는다. 그래서 block 속성으로 지정해준다. */
+  text-indent: -9999px; /* Github라는 문구를 대체 택스트 alt 대신 사용하기위해 왼쪽으로 크게 밀려나게 한다.(-9999를 약속처럼 많이 쓴다) */
+}
+
+header .logo a:hover{
+  background: url(../img/logo_on.svg);
+}
+
+header .main-menu{
+  display: flex;
+}
+
+header .main-menu li a{
+  padding: 10px;
+  display: block;
+  color: #3c4146;
+}
+
+header .main-menu li a:hover{
+  color: #4078c0;
+}
+
+/* Sign group(right) */
+header .sign-group{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+header .btn-group{
+  order: 2; /* 작성한 순서대로 0,1,2..로 지정되는데, order로 숫자에 따른 표시 순서를 바꿔준다 */
+  display: flex;
+}
+
+header .btn-group .sign-in{
+  margin-right: 4px;
+}
+
+#search-form{
+  order: 1;
+  margin-right: 12px;
+}
+
+#search{
+  width: 160px;
+  font-size: 14px;
+}
+
+/* submit을 작성하면 제출이라는 버튼이 생기는데 그걸 숨겨준다 */
+#search + [type="submit"]{
+  display: none;
+}
+
+header .sub-menu{
+  margin-right: 10px;
+  display: flex;
+}
+
+header .sub-menu li a{
+  padding: 8px;
+  color: #3c4146;
+  font-size: 13px;
+  display: block;
+}
+
+header .sub-menu li a:hover{
+  color: #4078c0;
+}
